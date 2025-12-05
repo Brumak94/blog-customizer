@@ -47,7 +47,11 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 			<aside
 				ref={asideRef}
 				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
-				<form className={styles.form}>
+				<form
+					className={styles.form}
+					onSubmit={(e) => {
+						e.preventDefault();
+					}}>
 					<Text as='h2' size={31} weight={800} uppercase dynamicLite>
 						Задайте параметры
 					</Text>
@@ -110,8 +114,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 							title='Сбросить'
 							htmlType='reset'
 							type='clear'
-							onClick={(e) => {
-								e.preventDefault();
+							onClick={() => {
 								setFormState(defaultArticleState);
 								props.onApply(defaultArticleState);
 								setIsOpen(false);
@@ -121,8 +124,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 							title='Применить'
 							htmlType='submit'
 							type='apply'
-							onClick={(e) => {
-								e.preventDefault();
+							onClick={() => {
 								props.onApply(formState);
 								setIsOpen(false);
 							}}
